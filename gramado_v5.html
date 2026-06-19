@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Gramado 2026">
+<meta name="theme-color" content="#1B2A4A">
+<title>Gramado 2026</title>
+<style>:root{
+  --N:#1B2A4A;--G:#C9A227;--G2:#E8C84A;--GB:#FBF3D5;--GR:#22863A;--R:#C0392B;
+  --BG:#EDEAE4;--W:#fff;--T:#1A1A2E;--MU:#6B7794;--BD:rgba(27,42,74,.1);--DG:#F0FFF4;
+  --MA:#4285F4;--WC:#00CAFF;--WB:#0D1A2E;--SP:#1DB954;--SP2:#158a3e;
+  --IG1:#F58529;--IG2:#DD2A7B;--IG3:#8134AF;
+  --ST:env(safe-area-inset-top,0px);--SB:env(safe-area-inset-bottom,0px);}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--BG);color:var(--T);display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+.ah{background:var(--N);color:#fff;flex-shrink:0;padding:calc(var(--ST)+.5rem) 1rem .4rem;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.3);}
+.h1{display:flex;justify-content:space-between;align-items:center;margin-bottom:.42rem;}
+.logo{font-size:.92em;font-weight:900;}.logo span{color:var(--G);}
+.h1r{display:flex;align-items:center;gap:.45rem;}
+.sp-hbtn{background:var(--SP);border:none;border-radius:8px;padding:.26rem .58rem;cursor:pointer;font-size:.67em;font-weight:800;color:white;display:flex;align-items:center;gap:.25rem;}
+.sp-hbtn:active{opacity:.75;}
+.cd{background:rgba(201,162,39,.18);border:1px solid rgba(201,162,39,.32);border-radius:8px;padding:.26rem .6rem;text-align:center;min-width:56px;}
+.cd-n{font-size:1.1em;font-weight:900;color:var(--G);line-height:1;}
+.cd-l{font-size:.41em;text-transform:uppercase;letter-spacing:.1em;opacity:.5;display:block;}
+.dtabs{display:flex;gap:.26rem;overflow-x:auto;padding:.28rem 0 .55rem;scrollbar-width:none;}
+.dtabs::-webkit-scrollbar{display:none;}
+.dtab{flex-shrink:0;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:.32rem .58rem;cursor:pointer;text-align:center;min-width:48px;-webkit-user-select:none;user-select:none;}
+.dtab.on{background:var(--G);border-color:var(--G);color:var(--N);}
+.dtab.today{box-shadow:0 0 0 2px rgba(255,255,255,.45);}
+.dn{font-size:.51em;font-weight:900;letter-spacing:.08em;text-transform:uppercase;opacity:.6;display:block;}
+.dtab.on .dn{opacity:.65;}
+.dd{font-size:.75em;font-weight:800;display:block;margin:.03rem 0;}
+.de{font-size:1.08em;display:block;}
+.tc{flex:1;overflow:hidden;position:relative;}
+.tp{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;display:none;-webkit-overflow-scrolling:touch;}
+.tp.on{display:block;}
+.ps{padding:1rem;max-width:600px;margin:0 auto;padding-bottom:calc(var(--SB)+116px);}
+/* Spotify strip */
+.sp-strip{position:fixed;left:0;right:0;bottom:calc(var(--SB)+56px);background:var(--SP);z-index:99;display:flex;align-items:center;gap:.62rem;padding:.5rem .88rem;cursor:pointer;box-shadow:0 -2px 10px rgba(29,185,84,.35);}
+.sp-strip:active{background:var(--SP2);}
+.sp-si{width:34px;height:34px;background:white;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.25em;flex-shrink:0;}
+.sp-info{flex:1;min-width:0;}
+.sp-sn{font-weight:800;font-size:.8em;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sp-ss{font-size:.63em;color:rgba(255,255,255,.72);}
+.sp-pb{background:white;color:var(--SP);border:none;border-radius:100px;padding:.28rem .72rem;font-size:.7em;font-weight:900;cursor:pointer;flex-shrink:0;}
+/* Bottom nav */
+.bn{display:flex;background:var(--W);border-top:1px solid var(--BD);flex-shrink:0;padding-bottom:var(--SB);z-index:100;box-shadow:0 -2px 10px rgba(0,0,0,.07);}
+.bi{flex:1;display:flex;flex-direction:column;align-items:center;gap:.08rem;padding:.5rem .25rem;cursor:pointer;position:relative;-webkit-user-select:none;user-select:none;}
+.bi .bii{font-size:1.26em;line-height:1;}
+.bi .bil{font-size:.53em;font-weight:700;color:var(--MU);text-transform:uppercase;letter-spacing:.05em;}
+.bi.on .bil{color:var(--N);}
+.bi.on::after{content:'';position:absolute;top:0;left:18%;right:18%;height:2.5px;background:var(--G);border-radius:0 0 3px 3px;}
+.nbadge{position:absolute;top:.24rem;right:calc(50% - 18px);background:var(--R);color:white;border-radius:100px;font-size:.46em;font-weight:900;padding:.07rem .28rem;min-width:13px;text-align:center;}
+/* Modals */
+.mo{position:fixed;inset:0;z-index:400;flex-direction:column;background:var(--W);display:none;}
+.mo.open{display:flex;}
+.mo-top{background:var(--N);color:#fff;padding:calc(var(--ST)+.6rem) 1rem .6rem;display:flex;align-items:center;gap:.68rem;flex-shrink:0;}
+.mo-title{flex:1;font-weight:800;font-size:.9em;}
+.mo-sub{font-size:.62em;opacity:.45;display:block;}
+.mo-close{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:8px;padding:.28rem .65rem;font-size:.74em;font-weight:700;cursor:pointer;}
+.mo-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:1rem;}
+.mo-rb{display:flex;gap:.48rem;margin-bottom:.78rem;}
+.mrb{flex:1;display:flex;align-items:center;justify-content:center;gap:.35rem;border:none;border-radius:12px;padding:.6rem;font-weight:800;font-size:.76em;cursor:pointer;text-decoration:none;}
+.mrb.gm{background:var(--MA);color:#fff;}
+.mrb.wz{background:var(--WB);color:var(--WC);border:1px solid var(--WC);}
+.mo-s{background:var(--BG);border-radius:12px;padding:.6rem .76rem;display:flex;align-items:center;gap:.56rem;margin-bottom:.46rem;border:1.5px solid var(--BD);}
+.mo-n{background:var(--N);color:var(--G);border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.7em;flex-shrink:0;}
+.mo-si{flex:1;min-width:0;}
+.mo-sn{font-weight:800;font-size:.78em;color:var(--N);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mo-ss{font-size:.64em;color:var(--MU);}
+.mo-sb{display:flex;gap:.26rem;flex-shrink:0;}
+.mnb{display:inline-flex;align-items:center;padding:.24rem .55rem;border-radius:7px;font-size:.62em;font-weight:800;border:none;cursor:pointer;text-decoration:none;}
+.mnb:active{opacity:.65;}
+.mg{background:var(--MA);color:#fff;}
+.mw{background:var(--WB);color:var(--WC);}
+/* IG modal */
+.igm{position:fixed;inset:0;z-index:450;flex-direction:column;background:rgba(0,0,0,.97);display:none;}
+.igm.open{display:flex;}
+.igm-top{display:flex;align-items:center;gap:.68rem;padding:calc(var(--ST)+.65rem) 1rem .65rem;flex-shrink:0;}
+.igm-title{flex:1;color:white;font-weight:900;font-size:.92em;}
+.igm-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;border-radius:8px;padding:.28rem .65rem;font-size:.74em;font-weight:700;cursor:pointer;}
+.igm-cw{flex:0 0 auto;display:flex;justify-content:center;padding:0 1rem .62rem;}
+#igCanvas{border-radius:14px;max-width:min(calc(100vw - 2rem),276px);box-shadow:0 4px 30px rgba(0,0,0,.6);}
+.igm-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.5rem 1rem calc(var(--SB)+.75rem);}
+.igt{flex:1;padding:.36rem;text-align:center;font-size:.69em;font-weight:700;border-radius:8px;cursor:pointer;border:none;background:rgba(255,255,255,.08);color:rgba(255,255,255,.55);}
+.igt.on{background:rgba(255,255,255,.18);color:white;}
+.igt-row{display:flex;gap:.26rem;margin-bottom:.6rem;}
+.igp{display:none;}
+.igp.on{display:block;}
+.ig-tb{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:.7rem;color:rgba(255,255,255,.85);font-size:.8em;line-height:1.65;margin-bottom:.5rem;word-break:break-word;}
+.ig-cb{width:100%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:white;border-radius:8px;padding:.46rem;font-size:.77em;font-weight:800;cursor:pointer;margin-bottom:.4rem;}
+.ig-pr{display:flex;align-items:center;gap:.58rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.56rem .8rem;margin-bottom:.5rem;cursor:pointer;-webkit-user-select:none;user-select:none;}
+.ig-pr span{color:rgba(255,255,255,.75);font-size:.77em;font-weight:700;flex:1;}
+.ig-tog{width:20px;height:20px;border-radius:5px;border:2px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:.7em;flex-shrink:0;color:white;}
+.ig-tog.on{background:var(--G);border-color:var(--G);color:var(--N);}
+.ig-sr{display:flex;gap:.4rem;margin-top:.5rem;}
+.ig-sb{flex:1;display:flex;align-items:center;justify-content:center;gap:.36rem;border:none;border-radius:10px;padding:.6rem;font-size:.75em;font-weight:900;cursor:pointer;}
+.ig-sm{background:linear-gradient(135deg,var(--IG1),var(--IG2),var(--IG3));color:white;}
+.ig-sd{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:white;}
+/* Day banner */
+.db{border-radius:16px;overflow:hidden;margin-bottom:.65rem;box-shadow:0 4px 18px rgba(0,0,0,.12);}
+.db-h{height:112px;position:relative;display:flex;align-items:flex-end;padding:.76rem .9rem;}
+.db-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8),transparent 60%);}
+.db-e{font-size:2.3em;line-height:1;z-index:2;position:relative;}
+.db-b{background:var(--N);padding:.78rem .9rem .9rem;}
+.db-t{font-size:.98em;font-weight:900;color:white;line-height:1.22;}
+.db-m{font-size:.64em;color:rgba(255,255,255,.45);margin:.15rem 0 .56rem;}
+.db-chips{display:flex;flex-wrap:wrap;gap:.26rem;margin-bottom:.58rem;}
+.dc{background:rgba(255,255,255,.1);border-radius:100px;padding:.13rem .52rem;font-size:.61em;font-weight:700;color:rgba(255,255,255,.8);}
+.db-btns{display:flex;gap:.26rem;flex-wrap:wrap;}
+.dbb{display:inline-flex;align-items:center;gap:.2rem;padding:.34rem .75rem;border-radius:8px;font-size:.67em;font-weight:800;text-decoration:none;border:none;cursor:pointer;-webkit-user-select:none;user-select:none;}
+.dbb:active{opacity:.7;}
+.dbb-m{background:#2A7A30;color:#fff;}
+.dbb-g{background:var(--MA);color:#fff;}
+.dbb-w{background:var(--WB);color:var(--WC);border:1px solid var(--WC);}
+.dbb-i{background:linear-gradient(135deg,var(--IG1),var(--IG2));color:#fff;}
+.prog{display:flex;align-items:center;gap:.5rem;background:var(--W);border-radius:10px;padding:.52rem .8rem;margin-bottom:.65rem;border:1px solid var(--BD);}
+.prog-b{flex:1;height:5px;background:var(--BD);border-radius:3px;overflow:hidden;}
+.prog-f{height:100%;background:var(--G);border-radius:3px;transition:width .35s;}
+.prog-l{font-size:.71em;font-weight:900;color:var(--N);}
+.rc{display:flex;align-items:center;gap:.38rem;padding:.1rem 0 .1rem .8rem;margin-bottom:.2rem;}
+.rcl{width:2px;height:16px;background:linear-gradient(to bottom,rgba(27,42,74,.12),var(--G));flex-shrink:0;}
+.rcp{background:var(--GB);border:1px solid rgba(201,162,39,.28);border-radius:100px;padding:.12rem .48rem;color:#7A5A00;font-weight:700;font-size:.62em;}
+/* Stop card */
+.sc{background:var(--W);border-radius:14px;margin-bottom:.48rem;border:1.5px solid var(--BD);overflow:hidden;}
+.sc.dn-c{border-color:rgba(34,134,58,.22);background:var(--DG);}
+.sc-h{height:126px;position:relative;overflow:hidden;}
+.sc-g{position:absolute;inset:0;}
+.sc-i{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.sc-o{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%);}
+.sc-t{position:absolute;top:.46rem;left:.6rem;background:rgba(0,0,0,.48);color:white;font-size:.58em;font-weight:900;letter-spacing:.08em;padding:.15rem .48rem;border-radius:100px;text-transform:uppercase;z-index:2;}
+.sc-e{position:absolute;bottom:.48rem;left:.6rem;font-size:1.88em;z-index:2;}
+.sc-r{position:absolute;bottom:.4rem;right:.48rem;background:linear-gradient(135deg,var(--IG1),var(--IG2));color:white;border:none;border-radius:100px;padding:.23rem .52rem;font-size:.61em;font-weight:800;cursor:pointer;z-index:3;}
+.sc-p{position:absolute;top:.46rem;right:.48rem;background:rgba(0,0,0,.48);color:white;border:none;border-radius:100px;padding:.19rem .5rem;font-size:.59em;font-weight:700;cursor:pointer;z-index:3;}
+.sc-b{padding:.65rem .86rem;}
+.sc-n{font-weight:900;font-size:.9em;color:var(--N);line-height:1.22;margin-bottom:.13rem;}
+.sc.dn-c .sc-n{opacity:.45;text-decoration:line-through;}
+.sc-sb{font-size:.74em;color:var(--MU);line-height:1.42;margin-bottom:.5rem;}
+.sc-nav{display:flex;gap:.24rem;flex-wrap:wrap;margin-bottom:.33rem;}
+.nb{display:inline-flex;align-items:center;gap:.16rem;padding:.28rem .62rem;border-radius:7px;font-size:.65em;font-weight:800;text-decoration:none;border:none;cursor:pointer;-webkit-user-select:none;user-select:none;}
+.nb:active{opacity:.65;}
+.nbg{background:var(--MA);color:white;}
+.nbw{background:var(--WB);color:var(--WC);border:1px solid var(--WC);}
+.nbc{background:#F0F0F0;color:var(--T);border:1px solid var(--BD);}
+.sc-tip{background:var(--GB);border:1px solid rgba(201,162,39,.2);border-radius:7px;padding:.32rem .54rem;font-size:.68em;color:#7A5A00;line-height:1.42;margin-top:.32rem;}
+.sc-ck{display:flex;align-items:center;gap:.46rem;padding:.4rem .44rem;border-top:1px solid var(--BD);cursor:pointer;-webkit-user-select:none;user-select:none;}
+.ck{width:20px;height:20px;border-radius:50%;border:2px solid var(--BD);display:flex;align-items:center;justify-content:center;font-size:.7em;flex-shrink:0;background:var(--W);}
+.sc.dn-c .ck{background:var(--GR);border-color:var(--GR);color:white;}
+.ckl{font-size:.72em;font-weight:700;color:var(--MU);}
+.sc.dn-c .ckl{color:var(--GR);}
+.anote{background:linear-gradient(135deg,#FFFAE8,#FFF5BF);border-left:3px solid var(--G);border-radius:0 10px 10px 0;padding:.65rem .88rem;font-size:.75em;color:#5A4200;line-height:1.6;font-style:italic;margin-top:.18rem;}
+.anote b{font-style:normal;color:var(--G);display:block;font-size:.66em;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.15rem;}
+.nav-btns{display:flex;gap:.38rem;justify-content:center;margin-top:.8rem;flex-wrap:wrap;}
+.btn-sec{background:var(--W);border:1.5px solid var(--BD);border-radius:9px;padding:.44rem .98rem;font-weight:800;font-size:.73em;cursor:pointer;}
+.btn-pri{background:var(--N);color:white;border:none;border-radius:9px;padding:.44rem 1.12rem;font-weight:900;font-size:.73em;cursor:pointer;}
+/* IG Grid */
+.ig-hd{margin-bottom:.8rem;}
+.ig-ht{font-size:1.05em;font-weight:900;color:var(--N);}
+.ig-hs{font-size:.76em;color:var(--MU);margin-top:.17rem;}
+.ig-bd{display:flex;gap:.36rem;flex-wrap:wrap;margin-top:.46rem;}
+.ig-b{background:linear-gradient(135deg,var(--IG1),var(--IG2));color:white;border-radius:100px;padding:.17rem .6rem;font-size:.66em;font-weight:700;}
+.ig-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
+.igc{background:var(--W);border-radius:12px;overflow:hidden;border:1.5px solid var(--BD);cursor:pointer;}
+.igc:active{opacity:.82;}
+.igc-t{height:110px;position:relative;overflow:hidden;}
+.igc-t .sc-g{background:linear-gradient(135deg,#1B2A4A,#243860);}
+.igc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent 55%);}
+.igc-ph{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;}
+.igc-e{position:absolute;bottom:.38rem;left:.48rem;font-size:1.45em;}
+.igc-d{position:absolute;top:.34rem;right:.34rem;background:rgba(0,0,0,.5);color:white;font-size:.56em;font-weight:800;padding:.07rem .38rem;border-radius:100px;}
+.igc-b{padding:.44rem .56rem .5rem;}
+.igc-n{font-weight:800;font-size:.73em;color:var(--N);line-height:1.2;}
+.igc-s{font-size:.62em;color:var(--MU);margin-top:.06rem;}
+.igc-btn{width:100%;margin-top:.38rem;background:linear-gradient(135deg,var(--IG1),var(--IG2));color:white;border:none;border-radius:7px;padding:.35rem;font-size:.68em;font-weight:800;cursor:pointer;}
+/* Fotos */
+.ft-hd{margin-bottom:.72rem;font-size:.85em;color:var(--MU);}
+.ft-hd b{color:var(--N);font-size:1.1em;}
+.gal-grid{display:grid;grid-template-columns:1fr 1fr;gap:.48rem;}
+.gc{background:var(--W);border-radius:12px;overflow:hidden;border:1.5px solid var(--BD);cursor:pointer;}
+.gc:active{opacity:.82;}
+.gc-t{height:100px;position:relative;}
+.gc-i{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.gc-e{position:absolute;bottom:.34rem;left:.42rem;font-size:1.42em;}
+.gc-b{position:absolute;top:.31rem;right:.31rem;background:rgba(0,0,0,.52);color:white;font-size:.55em;font-weight:800;padding:.07rem .38rem;border-radius:100px;}
+.gc-bd{padding:.4rem .55rem;}
+.gc-n{font-weight:800;font-size:.72em;color:var(--N);line-height:1.2;}
+.gc-s{font-size:.61em;color:var(--MU);margin-top:.06rem;}
+/* Custos */
+.ct-hd{background:var(--N);border-radius:16px;padding:1.05rem 1rem;margin-bottom:.7rem;text-align:center;box-shadow:0 4px 18px rgba(27,42,74,.25);}
+.ct-lbl{font-size:.62em;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);margin-bottom:.18rem;}
+.ct-tot{font-size:2.05em;font-weight:900;color:var(--G);line-height:1;}
+.ct-sub{font-size:.66em;color:rgba(255,255,255,.35);margin-top:.12rem;}
+.ct-ec{display:inline-flex;align-items:center;gap:.26rem;background:rgba(34,134,58,.2);border:1px solid rgba(34,134,58,.3);border-radius:100px;padding:.18rem .65rem;font-size:.69em;font-weight:700;color:#6EE884;margin-top:.42rem;}
+.ct-sub2{font-size:.63em;color:rgba(255,255,255,.3);margin-top:.3rem;}
+.ct-bar{height:5px;background:rgba(255,255,255,.1);border-radius:3px;margin:.58rem 0 0;overflow:hidden;}
+.ct-fill{height:100%;background:var(--G);border-radius:3px;transition:width .4s;}
+.sp-card{background:var(--SP);border-radius:14px;padding:.88rem .95rem;margin-bottom:.78rem;display:flex;align-items:center;gap:.7rem;cursor:pointer;box-shadow:0 4px 16px rgba(29,185,84,.3);}
+.sp-card:active{background:var(--SP2);}
+.sp-ci{width:42px;height:42px;background:white;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.45em;flex-shrink:0;}
+.sp-ci2{flex:1;}
+.sp-cn{font-weight:900;font-size:.86em;color:white;}
+.sp-cs{font-size:.67em;color:rgba(255,255,255,.72);margin-top:.06rem;}
+.sp-cb{background:white;color:var(--SP);border:none;border-radius:100px;padding:.36rem .88rem;font-size:.72em;font-weight:900;cursor:pointer;flex-shrink:0;}
+.gs-w{margin-bottom:.8rem;}
+.gs-l{font-size:.66em;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--MU);margin-bottom:.4rem;}
+.gs-bs{display:flex;gap:.32rem;overflow-x:auto;scrollbar-width:none;padding-bottom:.1rem;}
+.gs-bs::-webkit-scrollbar{display:none;}
+.gs-b{flex-shrink:0;display:flex;flex-direction:column;align-items:center;padding:.38rem .8rem;border-radius:10px;border:2px solid var(--BD);background:var(--W);cursor:pointer;-webkit-user-select:none;user-select:none;}
+.gs-b.on{border-color:var(--G);background:var(--GB);}
+.gs-b:active{opacity:.75;}
+.gs-d{width:8px;height:8px;border-radius:50%;margin-bottom:.08rem;}
+.gs-n{font-size:.7em;font-weight:800;color:var(--N);}
+.gs-b.on .gs-n{color:#7A5A00;}
+.gs-t{font-size:.57em;color:var(--MU);margin-top:.04rem;}
+.cd-card{background:var(--W);border-radius:14px;margin-bottom:.6rem;border:1px solid var(--BD);overflow:hidden;}
+.cd-hd{display:flex;align-items:center;gap:.46rem;padding:.65rem .8rem;background:linear-gradient(to right,var(--N),rgba(27,42,74,.88));cursor:pointer;-webkit-user-select:none;user-select:none;}
+.cd-e{font-size:1.18em;}
+.cd-tl{font-weight:900;font-size:.82em;color:white;flex:1;}
+.cd-tt{font-size:.78em;font-weight:900;color:var(--G);}
+.cd-ar{font-size:.76em;color:rgba(255,255,255,.4);transition:transform .2s;}
+.cd-card.open .cd-ar{transform:rotate(180deg);}
+.cd-body{display:none;border-top:1px solid var(--BD);}
+.cd-card.open .cd-body{display:block;}
+.cr{display:flex;align-items:center;gap:.46rem;padding:.4rem .8rem;border-bottom:1px solid var(--BD);}
+.cr:last-child{border-bottom:none;}
+.cr-ck{width:18px;height:18px;border-radius:5px;border:2px solid var(--BD);display:flex;align-items:center;justify-content:center;font-size:.61em;cursor:pointer;flex-shrink:0;background:var(--W);-webkit-user-select:none;user-select:none;}
+.cr-ck.paid{background:var(--GR);border-color:var(--GR);color:white;}
+.cr-i{flex:1;min-width:0;}
+.cr-n{font-size:.8em;font-weight:700;color:var(--N);}
+.cr-d{font-size:.65em;color:var(--MU);margin-top:.04rem;}
+.cr-p{text-align:right;flex-shrink:0;}
+.cr-v{font-size:.82em;font-weight:900;color:var(--N);}
+.cr-ec{font-size:.6em;font-weight:700;color:var(--GR);}
+.extra-r{display:flex;gap:.38rem;padding:.4rem .8rem;border-top:1px solid var(--BD);align-items:center;}
+.extra-i{flex:1;border:1.5px solid var(--BD);border-radius:7px;padding:.3rem .58rem;font-size:.76em;font-family:inherit;color:var(--T);}
+.extra-i:focus{outline:none;border-color:var(--G);}
+.extra-b{background:var(--N);color:var(--G);border:none;border-radius:7px;padding:.3rem .62rem;font-size:.73em;font-weight:800;cursor:pointer;}
+.cd-sub{background:var(--GB);border-top:1px solid rgba(201,162,39,.2);padding:.48rem .8rem;display:flex;justify-content:space-between;font-size:.78em;font-weight:900;color:#7A5A00;}
+.cmp-card{background:var(--N);border-radius:14px;padding:.85rem;margin-top:.8rem;}
+.cmp-t{font-size:.66em;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--G);margin-bottom:.5rem;}
+.cmp-r{display:flex;justify-content:space-between;align-items:center;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.cmp-r:last-child{border-bottom:none;}
+.cmp-l{font-size:.73em;color:rgba(255,255,255,.65);}
+.cmp-v{font-size:.73em;font-weight:800;color:white;}
+.cmp-e{font-size:.62em;font-weight:700;color:var(--G);}
+.ct-note{font-size:.69em;color:var(--MU);text-align:center;padding:.48rem 0 .9rem;}
+/* Malas */
+.mp{background:var(--N);border-radius:14px;padding:.9rem;margin-bottom:.85rem;text-align:center;}
+.mp-n{font-size:1.88em;font-weight:900;color:var(--G);}
+.mp-l{font-size:.63em;color:rgba(255,255,255,.42);text-transform:uppercase;letter-spacing:.1em;margin-top:.08rem;}
+.mp-bar{height:5px;background:rgba(255,255,255,.1);border-radius:3px;margin:.56rem 0 0;overflow:hidden;}
+.mp-f{height:100%;background:var(--G);border-radius:3px;}
+.msec{background:var(--W);border-radius:14px;padding:.76rem;margin-bottom:.54rem;border:1px solid var(--BD);}
+.msec-t{font-size:.64em;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--MU);margin-bottom:.38rem;}
+.mi{display:flex;align-items:center;gap:.56rem;padding:.34rem 0;border-bottom:1px solid var(--BD);cursor:pointer;-webkit-user-select:none;user-select:none;}
+.mi:last-child{border-bottom:none;}
+.mi-c{width:19px;height:19px;border-radius:5px;border:2px solid var(--BD);display:flex;align-items:center;justify-content:center;font-size:.61em;flex-shrink:0;}
+.mi.ck .mi-c{background:var(--GR);border-color:var(--GR);color:white;}
+.mi-l{font-size:.8em;}
+.mi.ck .mi-l{text-decoration:line-through;opacity:.38;}
+/* Photo viewer */
+.pv{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:500;display:none;flex-direction:column;align-items:center;justify-content:center;}
+.pv.open{display:flex;}
+.pv-img{max-width:100%;max-height:85vh;object-fit:contain;border-radius:6px;}
+.pv-close{position:absolute;top:calc(var(--ST)+.65rem);right:.86rem;background:rgba(255,255,255,.14);color:white;border:none;border-radius:50%;width:34px;height:34px;font-size:1em;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.pv-acts{position:absolute;bottom:calc(var(--SB)+1.3rem);display:flex;gap:.65rem;}
+.pv-btn{background:rgba(255,255,255,.14);color:white;border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:.4rem .95rem;font-size:.75em;font-weight:700;cursor:pointer;}
+.toast{position:fixed;bottom:calc(var(--SB)+9rem);left:50%;transform:translateX(-50%) translateY(8px);background:var(--N);color:white;padding:.36rem .95rem;border-radius:100px;font-size:.71em;font-weight:700;z-index:600;opacity:0;transition:opacity .3s,transform .3s;white-space:nowrap;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}</style>
+</head>
+<body>
+<header class="ah">
+  <div class="h1">
+    <div class="logo">&#x26F0; <span>Gramado</span> 2026</div>
+    <div class="h1r">
+      <button class="sp-hbtn" onclick="openSpotify()">🎵 Trilha</button>
+      <div class="cd"><div class="cd-n" id="cdN">--</div><span class="cd-l" id="cdL">dias</span></div>
+    </div>
+  </div>
+  <div class="dtabs" id="dtabs"></div>
+</header>
+<div class="tc">
+  <div class="tp on" id="tp-dias"><div class="ps" id="dias-ps"></div></div>
+  <div class="tp" id="tp-reels"><div class="ps" id="reels-ps"></div></div>
+  <div class="tp" id="tp-fotos"><div class="ps" id="fotos-ps"></div></div>
+  <div class="tp" id="tp-custos"><div class="ps" id="custos-ps"></div></div>
+  <div class="tp" id="tp-malas"><div class="ps" id="malas-ps"></div></div>
+</div>
+<div class="sp-strip" onclick="openSpotify()"><div class="sp-si">🎵</div><div class="sp-info"><div class="sp-sn">Serra Gaucha Winter Mix</div><div class="sp-ss">Trilha Sonora da Viagem</div></div><button class="sp-pb">&#9654; Spotify</button></div>
+<nav class="bn">
+  <div class="bi on" data-t="dias" onclick="sTab('dias')"><span class="bii">&#128197;</span><span class="bil">Dias</span></div>
+  <div class="bi" data-t="reels" onclick="sTab('reels')"><span class="bii">&#10024;</span><span class="bil">Reels</span></div>
+  <div class="bi" data-t="fotos" onclick="sTab('fotos')"><span class="bii">&#128248;</span><span class="bil">Fotos</span><span class="nbadge" id="pbadge" style="display:none">0</span></div>
+  <div class="bi" data-t="custos" onclick="sTab('custos')"><span class="bii">&#128176;</span><span class="bil">Custos</span></div>
+  <div class="bi" data-t="malas" onclick="sTab('malas')"><span class="bii">&#127920;</span><span class="bil">Malas</span></div>
+</nav>
+<div class="mo" id="mo">
+  <div class="mo-top"><div><div class="mo-title" id="moT">Rota</div><span class="mo-sub" id="moS"></span></div><button class="mo-close" onclick="closeMo()">X Fechar</button></div>
+  <div class="mo-body">
+    <div class="mo-rb">
+      <a class="mrb gm" id="moBG" href="#" target="_blank">&#128506; Maps Rota</a>
+      <button class="mrb wz" id="moBW" onclick="navWaze(this.dataset.u)">&#128309; Waze</button>
+    </div>
+    <div id="moList"></div>
+  </div>
+</div>
+<div class="igm" id="igm">
+  <div class="igm-top"><div class="igm-title" id="igmT">Criar Reel</div><button class="igm-close" onclick="closeIG()">X</button></div>
+  <div class="igm-cw"><canvas id="igCanvas" width="375" height="667"></canvas></div>
+  <div class="igm-body">
+    <div class="igt-row">
+      <button class="igt on" onclick="sIGT('card')">Card</button>
+      <button class="igt" onclick="sIGT('leg')">Legenda</button>
+      <button class="igt" onclick="sIGT('tags')">Hashtags</button>
+    </div>
+    <div class="igp on" id="igp-card">
+      <div class="ig-pr" onclick="togIGPh()"><span>&#128247; Usar minha foto de fundo</span><div class="ig-tog" id="igTog"></div></div>
+      <div class="ig-sr">
+        <button class="ig-sb ig-sm" onclick="shareIG()">&#128228; Compartilhar</button>
+        <button class="ig-sb ig-sd" onclick="dlCard()">&#11015; Baixar</button>
+      </div>
+    </div>
+    <div class="igp" id="igp-leg"><div class="ig-tb" id="igCap"></div><button class="ig-cb" onclick="copyCap()">Copiar legenda</button></div>
+    <div class="igp" id="igp-tags"><div class="ig-tb" id="igTags"></div><button class="ig-cb" onclick="copyTags()">Copiar hashtags</button></div>
+  </div>
+</div>
+<div class="pv" id="pv">
+  <button class="pv-close" onclick="closePV()">X</button>
+  <img class="pv-img" id="pvImg" src="" alt="">
+  <div class="pv-acts"><button class="pv-btn" onclick="delPh()">Remover</button><button class="pv-btn" onclick="closePV()">Fechar</button></div>
+</div>
+<input type="file" id="phInput" accept="image/*" style="display:none">
+<div class="toast" id="toast"></div>
+<script>(function(){
+  if(typeof CanvasRenderingContext2D!=='undefined'&&!CanvasRenderingContext2D.prototype.roundRect){
+    CanvasRenderingContext2D.prototype.roundRect=function(x,y,w,h,r){
+      r=r||0;this.beginPath();
+      this.moveTo(x+r,y);this.lineTo(x+w-r,y);this.quadraticCurveTo(x+w,y,x+w,y+r);
+      this.lineTo(x+w,y+h-r);this.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+      this.lineTo(x+r,y+h);this.quadraticCurveTo(x,y+h,x,y+h-r);
+      this.lineTo(x,y+r);this.quadraticCurveTo(x,y,x+r,y);
+      this.closePath();return this;};
+  }
+})();
+var DAYS=[{"id": 1, "date": "05/07", "wk": "Domingo", "emoji": "airplane", "title": "Chegada e Noite Classica", "bg": "linear-gradient(135deg,#0D1828,#1B3060)", "km": "~115 km", "drive": "~1h 40min", "note": "O primeiro impacto de Gramado no inverno e cinema puro. Vaao devagar, deixem o frio pousar na pele.", "stops": [{"time": "Partida", "name": "Aeroporto Salgado Filho", "sub": "Embarque. Chegue 2h antes.", "addr": "Aeroporto Internacional Salgado Filho, Porto Alegre, RS", "city": "Porto Alegre, RS", "lat": -30.00485, "lng": -51.17155, "km": null, "min": null, "tip": null, "gm": "https://www.google.com/maps/dir/?api=1&destination=-30.00485,-51.17155&travelmode=driving", "wz": "https://waze.com/ul?ll=-30.00485,-51.17155&navigate=yes&zoom=17"}, {"time": "15:30", "name": "Check-in Gramado", "sub": "Instalar a familia. O frio chega de surpresa!", "addr": "Rua Coberta, Centro, Gramado, RS", "city": "Gramado, RS", "lat": -29.379, "lng": -50.877, "km": "~115 km", "min": "~1h 40min", "tip": null, "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.379,-50.877&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.379,-50.877&navigate=yes&zoom=17"}, {"time": "18:30", "name": "Centro de Gramado", "sub": "Vielas iluminadas, chocolaterias e o aroma unico do inverno gaucho.", "addr": "Rua Coberta, Centro, Gramado, RS", "city": "Gramado, RS", "lat": -29.379, "lng": -50.877, "km": "a pe", "min": null, "tip": null, "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.379,-50.877&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.379,-50.877&navigate=yes&zoom=17"}, {"time": "20:30", "name": "Jantar Lugano", "sub": "Jantar na chocolateria/regiao do Lugano. Chocolate quente imperdivel!", "addr": "Av. Borges de Medeiros, Gramado, RS", "city": "Gramado, RS", "lat": -29.3785, "lng": -50.8765, "km": "no centro", "min": null, "tip": null, "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.3785,-50.8765&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.3785,-50.8765&navigate=yes&zoom=17"}], "routeGM": "https://www.google.com/maps/dir/-30.00485,-51.17155/-29.379,-50.877/-29.379,-50.877/-29.3785,-50.8765", "routeWZ": "https://waze.com/ul?ll=-29.3785,-50.8765&navigate=yes"}, {"id": 2, "date": "06/07", "wk": "Segunda", "emoji": "thrill", "title": "Alpen Park + NBA Park", "bg": "linear-gradient(135deg,#8B2A06,#D04A10)", "km": "~10 km", "drive": "~20 min", "note": "As filas crescem apos as 11h. Chegando as 10h aproveitam o dobro. Leve mochila com agua e lanche.", "stops": [{"time": "10:00", "name": "Alpen Park", "sub": "Treno alpino, Fogo do Dragao, Cinema 4D. Adultos: tirolesa e quadriciclo!", "addr": "Rodovia Arnaldo Oppitz, 901, Canela, RS", "city": "Canela, RS", "lat": -29.36027, "lng": -50.8238, "km": "~5 km", "min": "~10 min", "tip": "Abre 9h-17h20 | Adulto R$138,90 | Crianca R$67,50 | Tirolesa R$40 extra | TOTAL FAMILIA: R$524,20", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.36027,-50.8238&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.36027,-50.8238&navigate=yes&zoom=17"}, {"time": "13:00", "name": "Almoco Livre - Canela", "sub": "Restaurantes proximos ao Alpen Park.", "addr": "Centro, Canela, RS", "city": "Canela, RS", "lat": -29.3615, "lng": -50.81925, "km": "no parque", "min": null, "tip": null, "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.3615,-50.81925&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.3615,-50.81925&navigate=yes&zoom=17"}, {"time": "14:50", "name": "NBA Park", "sub": "Primeiro parque tematico da NBA no mundo! Simuladores, quadras, museu e loja oficial.", "addr": "Av. das Hortensias, 4795, Gramado, RS", "city": "Gramado, RS", "lat": -29.3596, "lng": -50.8215, "km": "~5 km", "min": "~10 min", "tip": "Ingresso: R$124,50 | TOTAL PAGO: R$209,80 (Tche Ofertas) | Abre 10h-17h", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.3596,-50.8215&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.3596,-50.8215&navigate=yes&zoom=17"}, {"time": "Noite", "name": "Noite Livre", "sub": "Exaustos de alegria. Recarreguem!", "addr": null, "city": "Gramado, RS", "lat": null, "lng": null, "km": null, "min": null, "tip": null, "gm": null, "wz": null}], "routeGM": "https://www.google.com/maps/dir/-29.36027,-50.8238/-29.3615,-50.81925/-29.3596,-50.8215", "routeWZ": "https://waze.com/ul?ll=-29.3596,-50.8215&navigate=yes"}, {"id": 3, "date": "07/07", "wk": "Terca", "emoji": "world", "title": "Mini Mundo + Cantina + Olivas", "bg": "linear-gradient(135deg,#154020,#257A40)", "km": "~30 km", "drive": "~50 min", "note": "Olivas: 14 km do centro (25 min). Criancas GRATIS! Venta muito - casacos pesados.", "stops": [{"time": "10:00", "name": "Mini Mundo", "sub": "Replicas em miniatura dos maiores monumentos do mundo.", "addr": "Rua Horacio Cardoso, 291, Gramado, RS", "city": "Gramado, RS", "lat": -29.37563, "lng": -50.87512, "km": "~2 km", "min": "~5 min", "tip": "Adulto: R$108 | Crianca: R$64 | Abre 10h-17h", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.37563,-50.87512&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.37563,-50.87512&navigate=yes&zoom=17"}, {"time": "12:00", "name": "Cantina Villa Italia", "sub": "Culinaria italiana colonial autentica. Ambiente animado e acolhedor!", "addr": "Cantina Villa Italia, Gramado, RS", "city": "Gramado, RS", "lat": -29.3814, "lng": -50.87234, "km": "~4 km", "min": "~8 min", "tip": "Adulto: R$134,00 | Crianca (6+): R$67,00 | TOTAL PAGO: R$335,50", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.3814,-50.87234&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.3814,-50.87234&navigate=yes&zoom=17"}, {"time": "15:00", "name": "Olivas de Gramado", "sub": "14 km do centro. Oliveiras com por do sol inesquecivel!", "addr": "Rua Vereador Jose Alexandre Benetti, 1808, Gramado, RS", "city": "Linha Nova, Gramado, RS", "lat": -29.32882, "lng": -50.92541, "km": "~14 km", "min": "~25 min", "tip": "Adulto: R$69,50 | Criancas GRATIS! | TOTAL PAGO: R$139,00 | Venta muito - casaco pesado!", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.32882,-50.92541&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.32882,-50.92541&navigate=yes&zoom=17"}, {"time": "Noite", "name": "Jantar em Casa", "sub": "Risoto + queijos e vinhos para adultos.", "addr": null, "city": "Gramado, RS", "lat": null, "lng": null, "km": null, "min": null, "tip": null, "gm": null, "wz": null}], "routeGM": "https://www.google.com/maps/dir/-29.37563,-50.87512/-29.3814,-50.87234/-29.32882,-50.92541", "routeWZ": "https://waze.com/ul?ll=-29.32882,-50.92541&navigate=yes"}, {"id": 4, "date": "08/07", "wk": "Quarta", "emoji": "flower", "title": "Garden Park + Nova Petropolis", "bg": "linear-gradient(135deg,#804010,#C07030)", "km": "~72 km", "drive": "~1h 30min", "note": "O Ninho das Aguias ao por do sol: vista 360 graus sobre os vales. Nao pule mesmo que as criancas reclamem!", "stops": [{"time": "09:00", "name": "Cafe da Manha no Hotel", "sub": "Aproveite com calma.", "addr": null, "city": "Gramado, RS", "lat": null, "lng": null, "km": null, "min": null, "tip": null, "gm": null, "wz": null}, {"time": "10:30", "name": "Garden Park", "sub": "138.000 m2 com 4,1 km de trilhas, cascatas e jardins.", "addr": "Estrada Professora Elvira Apolo Benetti, 1699, Gramado, RS", "city": "Gramado, RS", "lat": -29.3732, "lng": -50.8489, "km": "~4 km", "min": "~8 min", "tip": "Adulto: R$69,90 | Criancas GRATIS! | TOTAL PAGO: R$125,82 | Abre 9h-17h", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.3732,-50.8489&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.3732,-50.8489&navigate=yes&zoom=17"}, {"time": "Almoco", "name": "Restaurante Colina Verde", "sub": "Gastronomia colonial alema. Nova Petropolis.", "addr": "Restaurante Colina Verde, Nova Petropolis, RS", "city": "Nova Petropolis, RS", "lat": -29.37897, "lng": -51.11489, "km": "~32 km", "min": "~38 min", "tip": "Adulto: R$129 | Crianca (6+): R$65", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.37897,-51.11489&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.37897,-51.11489&navigate=yes&zoom=17"}, {"time": "Tarde", "name": "Circuito Nova Petropolis", "sub": "Labirinto Verde, Rua Coberta, Aldeia do Imigrante", "addr": "Centro Turistico, Nova Petropolis, RS", "city": "Nova Petropolis, RS", "lat": -29.37763, "lng": -51.11372, "km": "no centro", "min": null, "tip": null, "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.37763,-51.11372&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.37763,-51.11372&navigate=yes&zoom=17"}, {"time": "Por do Sol", "name": "Ninho das Aguias", "sub": "Vista panoramica de tirar o folego!", "addr": "Parque Ninho das Aguias, Nova Petropolis, RS", "city": "Nova Petropolis, RS", "lat": -29.3761, "lng": -51.10803, "km": "~3 km", "min": "~7 min", "tip": "Confirme abertura | Leve casaco extra!", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.3761,-51.10803&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.3761,-51.10803&navigate=yes&zoom=17"}, {"time": "Noite", "name": "Pastacuttia (delivery)", "sub": "Peca antes de sair de Nova Petropolis.", "addr": "Pastacuttia, Gramado, RS", "city": "Gramado, RS", "lat": -29.37932, "lng": -50.8766, "km": "~32 km", "min": "~38 min", "tip": null, "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.37932,-50.8766&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.37932,-50.8766&navigate=yes&zoom=17"}], "routeGM": "https://www.google.com/maps/dir/-29.3732,-50.8489/-29.37897,-51.11489/-29.37763,-51.11372/-29.3761,-51.10803/-29.37932,-50.8766", "routeWZ": "https://waze.com/ul?ll=-29.37932,-50.8766&navigate=yes"}, {"id": 5, "date": "09/07", "wk": "Quinta", "emoji": "wine", "title": "Terracota + Joilimont + Churrasco", "bg": "linear-gradient(135deg,#3A0060,#7A20A0)", "km": "~25 km", "drive": "~40 min", "note": "A Casa Terracota e um segredo de turistas apressados. Reserve com antecedencia. Na Joilimont os espumantes de altitude sao excepcionais.", "stops": [{"time": "12:00", "name": "Casa Terracota", "sub": "Culinaria afetiva. Espaco externo maravilhoso.", "addr": "Restaurante Casa Terracota, Canela, RS", "city": "Canela, RS", "lat": -29.3561, "lng": -50.81925, "km": "~5 km", "min": "~10 min", "tip": "Reserve com antecedencia - muito disputado em julho!", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.3561,-50.81925&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.3561,-50.81925&navigate=yes&zoom=17"}, {"time": "Tarde", "name": "Vinicola Joilimont", "sub": "Entre as videiras com espumantes de altitude.", "addr": "Vinicola Jolimont, Gramado, RS", "city": "Gramado, RS", "lat": -29.3627, "lng": -50.821, "km": "~12 km", "min": "~18 min", "tip": "Confira horarios no site antes de ir", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.3627,-50.821&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.3627,-50.821&navigate=yes&zoom=17"}, {"time": "19:30", "name": "Fondue Chalezinho", "sub": "O fondue mais tradicional de Gramado. Ambiente charmoso e acolhedor!", "addr": "Chalezinho Gramado, Gramado, RS", "city": "Gramado, RS", "lat": -29.3782, "lng": -50.8743, "km": "~3 km", "min": "~7 min", "tip": "Reserve com antecedencia! Ja confirmado - 19:30hs", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.3782,-50.8743&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.3782,-50.8743&navigate=yes&zoom=17"}], "routeGM": "https://www.google.com/maps/dir/-29.3561,-50.81925/-29.3627,-50.821/-29.3782,-50.8743", "routeWZ": "https://waze.com/ul?ll=-29.3782,-50.8743&navigate=yes"}, {"id": 6, "date": "10/07", "wk": "Sexta", "emoji": "temple", "title": "Templo Budista + Tres Coroas + Fondue", "bg": "linear-gradient(135deg,#004050,#007080)", "km": "~105 km", "drive": "~1h 55min", "note": "Templo FECHADO Seg, Ter, Qua. Vue de La Vallee: reserve com 10+ dias! Mesas esgotam em julho.", "stops": [{"time": "09:30", "name": "Templo Budista Khadro Ling", "sub": "Primeiro templo tibetano da America Latina.", "addr": "Rua Arnaldo Port, 1211, Tres Coroas, RS", "city": "Tres Coroas, RS", "lat": -29.52547, "lng": -50.78924, "km": "~50 km", "min": "~55 min", "tip": "ABRE sex/sab/dom 9h30-16h30 | FECHADO Seg, Ter, Qua", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.52547,-50.78924&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.52547,-50.78924&navigate=yes&zoom=17"}, {"time": "12:30", "name": "Casa Figueira - Tres Coroas", "sub": "Almoco caseiro. Refrigerante cortesia!", "addr": "Restaurante Casa Figueira, Tres Coroas, RS", "city": "Tres Coroas, RS", "lat": -29.5189, "lng": -50.77982, "km": "~4 km", "min": "~7 min", "tip": "Adulto: R$151,30 (refri cortesia via GramadoBlog!) | Crianca: R$28,00 | TOTAL: R$358,60", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.5189,-50.77982&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.5189,-50.77982&navigate=yes&zoom=17"}, {"time": "Tarde", "name": "Retorno a Gramado", "sub": "Ultimo passeio pelas chocolaterias.", "addr": "Centro, Gramado, RS", "city": "Gramado, RS", "lat": -29.379, "lng": -50.877, "km": "~50 km", "min": "~55 min", "tip": null, "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.379,-50.877&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.379,-50.877&navigate=yes&zoom=17"}, {"time": "Noite", "name": "Jantar Livre", "sub": "Noite tranquila apos dia intenso.", "addr": null, "city": "Gramado, RS", "lat": null, "lng": null, "km": null, "min": null, "tip": null, "gm": null, "wz": null}], "routeGM": "https://www.google.com/maps/dir/-29.52547,-50.78924/-29.5189,-50.77982/-29.379,-50.877", "routeWZ": "https://waze.com/ul?ll=-29.379,-50.877&navigate=yes"}, {"id": 7, "date": "11/07", "wk": "Sabado", "emoji": "choc", "title": "Despedida - Chocolates e Partida", "bg": "linear-gradient(135deg,#500000,#900010)", "km": "~118 km", "drive": "~1h 45min", "note": "Calcule peso extra para chocolates. Pao colonial com linguica - proibido acabar antes de chegar em casa!", "stops": [{"time": "10:00", "name": "Check-out do Hotel", "sub": "Organize as malas. Reserve 1h30 para as compras.", "addr": null, "city": "Gramado, RS", "lat": null, "lng": null, "km": null, "min": null, "tip": null, "gm": null, "wz": null}, {"time": "Manha", "name": "Prawer Chocolates - Fabrica", "sub": "Primeira fabrica de chocolate artesanal do Brasil! Visita gratuita.", "addr": "Av. das Hortensias, 4100, Gramado, RS", "city": "Gramado, RS", "lat": -29.3598, "lng": -50.8218, "km": "~5 km", "min": "~12 min", "tip": "Visita GRATUITA! Tel: (54) 99919-8213", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.3598,-50.8218&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.3598,-50.8218&navigate=yes&zoom=17"}, {"time": "Manha", "name": "Chocolates Lugano", "sub": "Caixas mais elegantes de Gramado para presentear.", "addr": "Av. Borges de Medeiros, 2817, Gramado, RS", "city": "Gramado, RS", "lat": -29.3785, "lng": -50.8764, "km": "~5 km", "min": "~10 min", "tip": "Caixas especiais para presentear", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.3785,-50.8764&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.3785,-50.8764&navigate=yes&zoom=17"}, {"time": "Manha", "name": "Praca das Etnias + Pao Colonial", "sub": "Ultima volta. Pao com linguica MISSAO OBRIGATORIA!", "addr": "Praca das Etnias, Centro, Gramado, RS", "city": "Gramado, RS", "lat": -29.37893, "lng": -50.87664, "km": "~1 km", "min": "~3 min", "tip": "Proibido acabar antes de chegar em casa!", "gm": "https://www.google.com/maps/dir/?api=1&destination=-29.37893,-50.87664&travelmode=driving", "wz": "https://waze.com/ul?ll=-29.37893,-50.87664&navigate=yes&zoom=17"}, {"time": "11:00", "name": "Partida - Aeroporto POA", "sub": "Gramado sempre chama de volta!", "addr": "Aeroporto Internacional Salgado Filho, Porto Alegre, RS", "city": "Porto Alegre, RS", "lat": -30.00485, "lng": -51.17155, "km": "~115 km", "min": "~1h 40min", "tip": null, "gm": "https://www.google.com/maps/dir/?api=1&destination=-30.00485,-51.17155&travelmode=driving", "wz": "https://waze.com/ul?ll=-30.00485,-51.17155&navigate=yes&zoom=17"}], "routeGM": "https://www.google.com/maps/dir/-29.3598,-50.8218/-29.3785,-50.8764/-29.37893,-50.87664/-30.00485,-51.17155", "routeWZ": "https://waze.com/ul?ll=-30.00485,-51.17155&navigate=yes"}];
+var PRICING={"Alpen Park": {"prime": [110.0, 55.0], "tche": [99.9, 50.0], "lac": [98.0, 48.0], "site": [138.9, 67.5]}, "NBA Park": {"prime": [124.5, 99.5], "tche": [110.0, 89.0], "lac": [105.0, 85.0], "site": [159.0, 99.5]}, "Mini Mundo": {"prime": [90.0, 55.0], "tche": [82.0, 50.0], "lac": [80.0, 48.0], "site": [108.0, 64.0]}, "Olivas de Gramado": {"prime": [59.9, 0.0], "tche": [55.0, 0.0], "lac": [52.0, 0.0], "site": [69.5, 0.0]}, "Garden Park": {"prime": [59.9, 0.0], "tche": [55.0, 0.0], "lac": [52.0, 0.0], "site": [69.9, 0.0]}, "Cantina Villa Italia": {"prime": [110.0, 60.0], "tche": [100.0, 55.0], "lac": [95.0, 52.0], "site": [134.0, 67.0]}, "Joilimont": {"prime": [60.0, 30.0], "tche": [55.0, 28.0], "lac": [52.0, 25.0], "site": [70.0, 35.0]}, "Tour Raizes": {"prime": [80.0, 40.0], "tche": [72.0, 36.0], "lac": [70.0, 35.0], "site": [90.0, 45.0]}, "Colina Verde": {"prime": [129.0, 65.0], "tche": [129.0, 65.0], "lac": [129.0, 65.0], "site": [129.0, 65.0]}, "Casa Terracota": {"prime": [80.0, 40.0], "tche": [80.0, 40.0], "lac": [80.0, 40.0], "site": [80.0, 40.0]}, "Casa Figueira": {"prime": [151.3, 28.0], "tche": [151.3, 28.0], "lac": [151.3, 28.0], "site": [151.3, 28.0]}, "Vue de La Vallee": {"prime": [190.0, 95.0], "tche": [190.0, 95.0], "lac": [190.0, 95.0], "site": [190.0, 95.0]}, "Chalezinho Fondue": {"prime": [130.0, 65.0], "tche": [120.0, 60.0], "lac": [115.0, 58.0], "site": [150.0, 75.0]}, "Prawer": {"prime": [0.0, 0.0], "tche": [0.0, 0.0], "lac": [0.0, 0.0], "site": [0.0, 0.0]}};
+var BUDGET_DAYS=[{"day": 2, "e": "thrill", "label": "Dia 2 \u2014 Seg, 06/07", "items": [{"n": "Alpen Park", "k": "Alpen Park", "qa": 2, "qc": 2}, {"n": "NBA Park", "k": "NBA Park", "qa": 2, "qc": 2}]}, {"day": 3, "e": "world", "label": "Dia 3 \u2014 Ter, 07/07", "items": [{"n": "Mini Mundo", "k": "Mini Mundo", "qa": 2, "qc": 2}, {"n": "Cantina Villa Italia", "k": "Cantina Villa Italia", "qa": 2, "qc": 2}, {"n": "Olivas de Gramado", "k": "Olivas de Gramado", "qa": 2, "qc": 0}]}, {"day": 4, "e": "flower", "label": "Dia 4 \u2014 Qua, 08/07", "items": [{"n": "Garden Park", "k": "Garden Park", "qa": 2, "qc": 0}, {"n": "Colina Verde", "k": "Colina Verde", "qa": 2, "qc": 2}]}, {"day": 5, "e": "wine", "label": "Dia 5 \u2014 Qui, 09/07", "items": [{"n": "Casa Terracota", "k": "Casa Terracota", "qa": 2, "qc": 2}, {"n": "Joilimont", "k": "Joilimont", "qa": 2, "qc": 2}, {"n": "Fondue Chalezinho (19:30)", "k": "Chalezinho Fondue", "qa": 2, "qc": 0}]}, {"day": 6, "e": "temple", "label": "Dia 6 \u2014 Sex, 10/07", "items": [{"n": "Tour Raizes / Templo", "k": "Tour Raizes", "qa": 2, "qc": 2}, {"n": "Casa Figueira", "k": "Casa Figueira", "qa": 2, "qc": 2}]}, {"day": 7, "e": "choc", "label": "Dia 7 \u2014 Sab, 11/07", "items": [{"n": "Prawer (entrada gratis)", "k": "Prawer", "qa": 0, "qc": 0}]}];
+var PACKING=[{"sec": "Agasalho Essencial", "items": ["Casaco de pluma ou la grossa", "Luvas de la", "Touca / gorro", "Meias grossas termicas", "Bota com sola quente", "Cachecol", "Casaco impermeavel", "Camadas termicas internas"]}, {"sec": "Para as Criancas", "items": ["Casaco extra", "Luvas e touca infantis", "Mochilinha com agua e lanche", "Roupas para parques", "Remedios habituais", "Muda extra"]}, {"sec": "Saude e Higiene", "items": ["Ibuprofeno / analgesico", "Antialeragico", "Hidratante labial", "Creme hidratante", "Kit primeiros socorros"]}, {"sec": "Documentos", "items": ["RG e CPF de todos", "Cartao de credito / debito", "Cartao extra (emergencia)", "Passagens / vouchers", "Comprovante de reserva", "Dinheiro em especie"]}, {"sec": "Tecnologia", "items": ["Carregador celular + cabo", "Power bank carregado", "Camera / tripe portatil", "Fones de ouvido", "Adaptador de tomada"]}, {"sec": "Compras Dia 7", "items": ["Prawer - bombons avulsos", "Lugano - caixas presenteaveis", "Caracol - sortimento variado", "Pao colonial com linguica", "Queijo colonial artesanal", "Espumante da Serra", "Geleias e conservas"]}];
+var VISUALS={"1_0": {"g": "linear-gradient(135deg,#1a1a3e,#2d4a7a)", "e": "airplane"}, "1_1": {"g": "linear-gradient(135deg,#1B2A4A,#3A5585)", "e": "hotel"}, "1_2": {"g": "linear-gradient(135deg,#080E20,#1B3060)", "e": "city"}, "1_3": {"g": "linear-gradient(135deg,#2A1540,#4A2070)", "e": "food"}, "2_0": {"g": "linear-gradient(135deg,#C0390A,#E07020)", "e": "thrill"}, "2_1": {"g": "linear-gradient(135deg,#4A4A4A,#6A6A6A)", "e": "food"}, "2_2": {"g": "linear-gradient(135deg,#1A2D80,#C0310A)", "e": "sport"}, "2_3": {"g": "linear-gradient(135deg,#1B2A4A,#243860)", "e": "sleep"}, "3_0": {"g": "linear-gradient(135deg,#1A5C30,#2D8A50)", "e": "world"}, "3_1": {"g": "linear-gradient(135deg,#6B2010,#C0500A)", "e": "food"}, "3_2": {"g": "linear-gradient(135deg,#3A6000,#7A9000)", "e": "nature"}, "3_3": {"g": "linear-gradient(135deg,#2A1A3A,#4A2A6A)", "e": "home"}, "4_0": {"g": "linear-gradient(135deg,#1B2A4A,#2A3A5A)", "e": "coffee"}, "4_1": {"g": "linear-gradient(135deg,#B0205A,#D04080)", "e": "flower"}, "4_2": {"g": "linear-gradient(135deg,#4A3010,#7A5020)", "e": "food"}, "4_3": {"g": "linear-gradient(135deg,#1A5040,#2A7A60)", "e": "nature"}, "4_4": {"g": "linear-gradient(135deg,#1A2060,#2A3A90)", "e": "eagle"}, "4_5": {"g": "linear-gradient(135deg,#3A2010,#6A4020)", "e": "food"}, "5_0": {"g": "linear-gradient(135deg,#8B3010,#C05020)", "e": "art"}, "5_1": {"g": "linear-gradient(135deg,#3A0070,#7A20B0)", "e": "wine"}, "5_2": {"g": "linear-gradient(135deg,#080E20,#1A2460)", "e": "fondue"}, "6_0": {"g": "linear-gradient(135deg,#005050,#008080)", "e": "temple"}, "6_1": {"g": "linear-gradient(135deg,#1A4020,#2A6030)", "e": "nature"}, "6_2": {"g": "linear-gradient(135deg,#2A3060,#3A4A90)", "e": "shop"}, "6_3": {"g": "linear-gradient(135deg,#080E20,#1A2460)", "e": "fondue"}, "7_0": {"g": "linear-gradient(135deg,#1B2A4A,#243860)", "e": "hotel"}, "7_1": {"g": "linear-gradient(135deg,#5C2010,#8C3020)", "e": "choc"}, "7_2": {"g": "linear-gradient(135deg,#3C1A08,#6C3A18)", "e": "choc"}, "7_3": {"g": "linear-gradient(135deg,#1A3A1A,#2A5A2A)", "e": "bread"}, "7_4": {"g": "linear-gradient(135deg,#1a1a3e,#2d4a7a)", "e": "airplane"}};
+var IGDATA={"Alpen Park": {"cap": "Adrenalina total na Serra Gaucha! Alpen Park em Canela e puro divertimento!", "tags": "#Gramado #Canela #SerraGaucha #AlpenPark #FamiliaViajante #Aventura #Inverno"}, "NBA Park": {"cap": "O primeiro parque tematico da NBA no mundo fica no Brasil! Incrivel demais!", "tags": "#NBABrasil #NBAGramado #Gramado #SerraGaucha #FamiliaViajante"}, "Mini Mundo": {"cap": "O mundo inteiro em miniatura! Mini Mundo de Gramado encanta adultos e criancas.", "tags": "#MiniMundo #Gramado #SerraGaucha #FamiliaViajante #Miniatura"}, "Olivas de Gramado": {"cap": "Por do sol mais lindo da Serra Gaucha entre oliveiras centenarias!", "tags": "#OlivasDeGramado #Gramado #SerraGaucha #PorDoSol #FamiliaViajante"}, "Garden Park": {"cap": "Um oasis de natureza na Serra Gaucha! 4km de trilhas e jardins deslumbrantes.", "tags": "#GardenPark #Gramado #SerraGaucha #Natureza #Trilha #FamiliaViajante"}, "Templo Budista Khadro Ling": {"cap": "Experiencia espiritual unica no Sul do Brasil! Templo Budista Khadro Ling.", "tags": "#KhadroLing #TemploBudista #TresCoroas #SerraGaucha #Espiritualidade #Paz"}, "Vue de La Vallee": {"cap": "Fondue dos sonhos com vista para o Vale do Quilombo em Gramado!", "tags": "#Fondue #Gramado #SerraGaucha #Gastronomia #JantarEspecial #FamiliaViajante"}, "Chalezinho Fondue": {"cap": "Noite magica de fondue em Gramado! Chalezinho: o fondue mais tradicional e acolhedor da Serra Gaucha.", "tags": "#Fondue #Chalezinho #Gramado #SerraGaucha #JantarEspecial #FamiliaViajante #InvernoGaucho"}, "Prawer": {"cap": "A primeira fabrica de chocolate artesanal do Brasil em Gramado!", "tags": "#Prawer #ChocolateGramado #Gramado #SerraGaucha #Chocolate"}};
+var IGDEF={"cap": "Momento inesquecivel na Serra Gaucha! Julho 2026 com a familia em Gramado.", "tags": "#Gramado #Canela #SerraGaucha #FamiliaViajante #VisiteBrasil #InvernoGaucho"};
+var SP_APP='spotify:playlist:3g02LCGxZuZS7f8484SsJs';
+var SP_WEB='https://open.spotify.com/playlist/3g02LCGxZuZS7f8484SsJs';
+function getE(k){var m={airplane:'✈',hotel:'🏨',city:'🌆',food:'🍽',thrill:'🎢',sport:'🏀',sleep:'😴',world:'🏙',nature:'🌸',wine:'🍷',coffee:'☕',flower:'🌸',art:'🏺',bbq:'🥩',temple:'🛕',shop:'🛒',fondue:'🫕',choc:'🍫',bread:'🥖',eagle:'🦅',home:'🏠',mountain:'⛰',music:'🎵',pin:'📍'};return m[k]||'📍';}
+
+var curDay=1,curGroup='prime',curTab='dias';
+var igStop=null,igUsePh=false,pvKey=null;
+var ST={chk:{},pack:[],paid:{'0_1':true,'1_1':true,'1_2':true,'2_0':true},extras:{},photos:{}};
+try{var _s=JSON.parse(localStorage.getItem('g26')||'{}');
+  Object.assign(ST,_s);
+  if(ST._d)curDay=ST._d;
+  if(ST._g)curGroup=ST._g;
+}catch(e){}
+function save(){ST._d=curDay;ST._g=curGroup;
+  try{localStorage.setItem('g26',JSON.stringify(ST));}
+  catch(e){toast('Memoria cheia - remova fotos');}
+}
+function isDone(d,i){return!!(ST.chk[d]&&ST.chk[d].indexOf(i)>=0);}
+function togDone(d,i){
+  if(!ST.chk[d])ST.chk[d]=[];
+  var a=ST.chk[d],x=a.indexOf(i);
+  if(x<0)a.push(i);else a.splice(x,1);
+  save();renderDias();
+}
+function fmtR(v){return'R$ '+v.toFixed(2).replace('.',',');}
+var iOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
+var And=/Android/.test(navigator.userAgent);
+
+function navMaps(url){window.open(url,'_blank');}
+function navWaze(url){
+  if(iOS||And){
+    var ok=false;
+    window.addEventListener('blur',function(){ok=true;},{once:true});
+    window.location.href=url.replace('https://waze.com/ul?','waze://?');
+    setTimeout(function(){if(!ok)window.open(url,'_blank');},1400);
+  }else window.open(url,'_blank');
+}
+function openSpotify(){
+  if(iOS||And){
+    var ok=false;
+    window.addEventListener('blur',function(){ok=true;},{once:true});
+    window.location.href=SP_APP;
+    setTimeout(function(){if(!ok)window.open(SP_WEB,'_blank');},1500);
+  }else window.open(SP_WEB,'_blank');
+}
+function copyT(t){
+  try{navigator.clipboard.writeText(t).then(function(){toast('Copiado!');});}
+  catch(e){toast(t.slice(0,40));}
+}
+function toast(msg){
+  try{var t=document.getElementById('toast');
+    t.textContent=msg;t.classList.add('show');
+    setTimeout(function(){t.classList.remove('show');},2600);
+  }catch(e){}
+}
+
+/* Countdown */
+function updateCD(){
+  try{
+    var diff=new Date('2026-07-05T15:30:00-03:00')-new Date();
+    var n=document.getElementById('cdN'),l=document.getElementById('cdL');
+    if(!n)return;
+    if(diff<=0&&diff>-7*864e5){n.textContent='';l.textContent='em curso!';}
+    else if(diff<=0){n.textContent='';l.textContent='feita!';}
+    else{n.textContent=Math.ceil(diff/864e5);l.textContent='dias';}
+  }catch(e){}
+}
+
+/* Tab switch */
+function sTab(t){
+  curTab=t;
+  document.querySelectorAll('.tp').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.bi').forEach(function(b){b.classList.remove('on');});
+  var p=document.getElementById('tp-'+t);if(p)p.classList.add('on');
+  var b=document.querySelector('[data-t="'+t+'"]');if(b)b.classList.add('on');
+  if(t==='dias')renderDias();
+  else if(t==='reels')renderReels();
+  else if(t==='fotos')renderFotos();
+  else if(t==='custos')renderCustos();
+  else if(t==='malas')renderMalas();
+}
+
+/* Day selector */
+function sDay(id){
+  curDay=id;save();renderDayTabs();renderDias();
+  try{document.getElementById('tp-dias').querySelector('.ps').scrollTop=0;}catch(e){}
+}
+function renderDayTabs(){
+  try{
+    var tm=new Date().setHours(0,0,0,0),h='';
+    for(var i=0;i<DAYS.length;i++){
+      var d=DAYS[i],pt=d.date.split('/');
+      var dm=new Date(2026,parseInt(pt[1],10)-1,parseInt(pt[0],10)).setHours(0,0,0,0);
+      h+='<div class="dtab'+(d.id===curDay?' on':'')+(dm===tm?' today':'')+' " data-id="'+d.id+'" onclick="sDay(this.dataset.id|0)">';
+      h+='<span class="dn">D'+d.id+'</span><span class="dd">'+d.date+'</span>';
+      h+='<span class="de">'+getE(d.emoji)+'</span></div>';
+    }
+    document.getElementById('dtabs').innerHTML=h;
+  }catch(e){console.log('dayTabs',e);}
+}
+
+/* Render DIAS */
+function renderDias(){
+  try{
+    var d=null;
+    for(var i=0;i<DAYS.length;i++){if(DAYS[i].id===curDay){d=DAYS[i];break;}}
+    if(!d)return;
+    var total=d.stops.length,done=(ST.chk[d.id]||[]).length;
+    var pct=total>0?Math.round(done/total*100):0;
+    var h='';
+    for(var i=0;i<d.stops.length;i++){
+      var st=d.stops[i],dn=isDone(d.id,i),vk=d.id+'_'+i;
+      var vis=VISUALS[vk]||{g:'linear-gradient(135deg,#1B2A4A,#243860)',e:'pin'};
+      var hp=!!ST.photos[vk];
+      if(i>0&&st.km){
+        h+='<div class="rc"><div class="rcl"></div><div class="rcp">'+st.km+(st.min?' | '+st.min:'')+'</div></div>';
+      }
+      var btns='';
+      if(st.gm){
+        btns+='<a class="nb nbg" href="'+st.gm+'" target="_blank">Maps</a>';
+        if(st.wz)btns+='<button class="nb nbw" data-u="'+st.wz+'" onclick="navWaze(this.dataset.u)">Waze</button>';
+        if(st.addr)btns+='<button class="nb nbc" data-a="'+st.addr+'" onclick="copyT(this.dataset.a)">Copiar</button>';
+      }
+      h+='<div class="sc'+(dn?' dn-c':'')+'">';
+      h+='<div class="sc-h"><div class="sc-g" style="background:'+vis.g+';"></div>';
+      if(hp)h+='<img class="sc-i" src="'+ST.photos[vk]+'" alt="">';
+      h+='<div class="sc-o"></div><div class="sc-t">'+st.time+'</div>';
+      h+='<span class="sc-e">'+getE(vis.e)+'</span>';
+      h+='<button class="sc-r" data-d="'+d.id+'" data-s="'+i+'" onclick="openIG(this.dataset.d|0,this.dataset.s|0)">Reel</button>';
+      h+='<button class="sc-p" data-d="'+d.id+'" data-s="'+i+'" onclick="trigUp(this.dataset.d|0,this.dataset.s|0)">'+(hp?'Trocar':'+ Foto')+'</button>';
+      h+='</div>';
+      h+='<div class="sc-b"><div class="sc-n">'+st.name+'</div><div class="sc-sb">'+st.sub+'</div>';
+      if(btns)h+='<div class="sc-nav">'+btns+'</div>';
+      if(st.tip)h+='<div class="sc-tip">'+st.tip+'</div>';
+      h+='</div>';
+      h+='<div class="sc-ck" data-d="'+d.id+'" data-i="'+i+'" onclick="togDone(this.dataset.d|0,this.dataset.i|0)">';
+      h+='<div class="ck">'+(dn?'&#10003;':'')+'</div>';
+      h+='<div class="ckl">'+(dn?'Concluido!':'Marcar como feito')+'</div></div>';
+      h+='</div>';
+    }
+    var el=document.getElementById('dias-ps');if(!el)return;
+    el.innerHTML=
+      '<div class="db"><div class="db-h" style="background:'+d.bg+';">'+
+      '<div class="db-ov"></div><div class="db-e">'+getE(d.emoji)+'</div></div>'+
+      '<div class="db-b"><div class="db-t">'+d.title+'</div>'+
+      '<div class="db-m">'+d.date+' | '+d.wk+' | Dia '+d.id+' de 7</div>'+
+      '<div class="db-chips"><span class="dc">'+d.km+'</span><span class="dc">'+d.drive+'</span></div>'+
+      '<div class="db-btns">'+
+      '<button class="dbb dbb-m" data-id="'+d.id+'" onclick="openMo(this.dataset.id|0)">Mapa</button>'+
+      '<a class="dbb dbb-g" href="'+d.routeGM+'" target="_blank">Maps</a>'+
+      '<button class="dbb dbb-w" data-u="'+d.routeWZ+'" onclick="navWaze(this.dataset.u)">Waze</button>'+
+      '<button class="dbb dbb-i" data-d="'+d.id+'" onclick="openIG(this.dataset.d|0,0)">Reel</button>'+
+      '</div></div></div>'+
+      '<div class="prog"><div class="prog-b"><div class="prog-f" style="width:'+pct+'%"></div></div>'+
+      '<div class="prog-l">'+done+'/'+total+'</div></div>'+
+      h+
+      '<div class="anote"><b>NOTA</b>'+d.note+'</div>'+
+      '<div class="nav-btns">'+
+      (d.id>1?'<button class="btn-sec" data-d="'+(d.id-1)+'" onclick="sDay(this.dataset.d|0)">&#8592; Dia '+(d.id-1)+'</button>':'')+
+      (d.id<7?'<button class="btn-pri" data-d="'+(d.id+1)+'" onclick="sDay(this.dataset.d|0)">Dia '+(d.id+1)+' &#8594;</button>':'')+
+      '</div>';
+  }catch(e){console.log('renderDias',e);}
+}
+
+/* Map modal */
+function openMo(dayId){
+  try{
+    var d=null;
+    for(var i=0;i<DAYS.length;i++){if(DAYS[i].id===dayId){d=DAYS[i];break;}}
+    if(!d)return;
+    document.getElementById('moT').textContent='Dia '+dayId+' — '+d.title;
+    document.getElementById('moS').textContent=d.date+' | '+d.wk+' | '+d.km;
+    document.getElementById('moBG').setAttribute('href',d.routeGM);
+    document.getElementById('moBW').setAttribute('data-u',d.routeWZ);
+    var h='',stops=d.stops.filter(function(s){return s.lat&&s.lng;});
+    for(var i=0;i<stops.length;i++){
+      var st=stops[i];
+      h+='<div class="mo-s">';
+      h+='<div class="mo-n">'+(i+1)+'</div>';
+      h+='<div class="mo-si"><div class="mo-sn">'+st.name+'</div>';
+      h+='<div class="mo-ss">'+st.time+(st.km?' | '+st.km:'')+'</div></div>';
+      h+='<div class="mo-sb">';
+      if(st.gm)h+='<a class="mnb mg" href="'+st.gm+'" target="_blank">Maps</a>';
+      if(st.wz)h+='<button class="mnb mw" data-u="'+st.wz+'" onclick="navWaze(this.dataset.u)">Waze</button>';
+      h+='</div></div>';
+    }
+    document.getElementById('moList').innerHTML=h;
+    document.getElementById('mo').classList.add('open');
+  }catch(e){console.log('openMo',e);}
+}
+function closeMo(){document.getElementById('mo').classList.remove('open');}
+
+/* ── CUSTOS ────────────────────────────────────────────────────────────── */
+function iCost(k,qa,qc,g){
+  if(!k||!PRICING[k])return 0;
+  g=g||curGroup;
+  var p=PRICING[k][g]||PRICING[k].site;
+  return qa*p[0]+qc*p[1];
+}
+function togPaid(el){
+  var k=el.dataset.k;
+  if(!ST.paid)ST.paid={};
+  ST.paid[k]=!ST.paid[k];
+  save();renderCustos();
+}
+function togCard(el){
+  var card=el.closest('.cd-card');
+  if(card)card.classList.toggle('open');
+}
+function setGroup(el){
+  curGroup=el.dataset.g;
+  save();renderCustos();
+}
+function addExtra(el){
+  var di=el.dataset.di|0;
+  var inp=document.getElementById('ex_'+di);
+  if(!inp)return;
+  var v=parseFloat(inp.value.replace(',','.'));
+  if(isNaN(v)||v<=0){toast('Digite um valor valido');return;}
+  if(!ST.extras[di])ST.extras[di]=[];
+  ST.extras[di].push(v);
+  inp.value='';
+  save();renderCustos();
+}
+function renderCustos(){
+  try{
+    var totCur=0,totSite=0,totPaid=0;
+    for(var di=0;di<BUDGET_DAYS.length;di++){
+      var bd=BUDGET_DAYS[di];
+      for(var ii=0;ii<bd.items.length;ii++){
+        var it=bd.items[ii];
+        totCur+=iCost(it.k,it.qa,it.qc);
+        totSite+=iCost(it.k,it.qa,it.qc,'site');
+        if(ST.paid&&ST.paid[di+'_'+ii])totPaid+=iCost(it.k,it.qa,it.qc);
+      }
+      if(ST.extras[di])for(var ei=0;ei<ST.extras[di].length;ei++){totCur+=ST.extras[di][ei];totPaid+=ST.extras[di][ei];}
+    }
+    var econ=totSite-totCur;
+    var pctP=totCur>0?Math.round(totPaid/totCur*100):0;
+    var h='';
+    /* Header */
+    h+='<div class="ct-hd"><div class="ct-lbl">Total Familiar</div>';
+    h+='<div class="ct-tot">'+fmtR(totCur)+'</div>';
+    h+='<div class="ct-sub">2 adultos + 2 criancas</div>';
+    if(econ>0.01)h+='<div><span class="ct-ec">&#10004; Economizando '+fmtR(econ)+' vs Site</span></div>';
+    h+='<div class="ct-sub2">Pago: '+fmtR(totPaid)+' | Pendente: '+fmtR(totCur-totPaid)+'</div>';
+    h+='<div class="ct-bar"><div class="ct-fill" style="width:'+pctP+'%"></div></div></div>';
+    /* Spotify card */
+    h+='<div class="sp-card" onclick="openSpotify()">';
+    h+='<div class="sp-ci">'+getE('music')+'</div>';
+    h+='<div class="sp-ci2"><div class="sp-cn">Serra Gaucha Winter Mix</div>';
+    h+='<div class="sp-cs">Trilha Sonora da Viagem</div></div>';
+    h+='<button class="sp-cb">&#9654; Ouvir</button></div>';
+    /* Group selector */
+    var GI=[
+      {k:'prime',n:'Prime',tag:'Cartao/Prime',dot:'#C9A227'},
+      {k:'tche',n:'Tche',tag:'Plataforma',dot:'#4285F4'},
+      {k:'lac',n:'Lacador',tag:'Lacador.com',dot:'#22863A'},
+      {k:'site',n:'Site',tag:'Oficial',dot:'#C0392B'}
+    ];
+    h+='<div class="gs-w"><div class="gs-l">Grupo de preco</div><div class="gs-bs">';
+    for(var i=0;i<GI.length;i++){
+      var gi=GI[i];
+      h+='<div class="gs-b'+(curGroup===gi.k?' on':'')+'" data-g="'+gi.k+'" onclick="setGroup(this)">';
+      h+='<div class="gs-d" style="background:'+gi.dot+';"></div>';
+      h+='<div class="gs-n">'+gi.n+'</div><div class="gs-t">'+gi.tag+'</div></div>';
+    }
+    h+='</div></div>';
+    /* Day cards */
+    for(var di=0;di<BUDGET_DAYS.length;di++){
+      var bd=BUDGET_DAYS[di];
+      var dayT=0;
+      for(var ii=0;ii<bd.items.length;ii++)dayT+=iCost(bd.items[ii].k,bd.items[ii].qa,bd.items[ii].qc);
+      if(ST.extras[di])for(var ei=0;ei<ST.extras[di].length;ei++)dayT+=ST.extras[di][ei];
+      h+='<div class="cd-card open" id="cdc_'+di+'">';
+      h+='<div class="cd-hd" onclick="togCard(this)">';
+      h+='<span class="cd-e">'+getE(bd.e)+'</span>';
+      h+='<span class="cd-tl">'+bd.label+'</span>';
+      h+='<span class="cd-tt">'+fmtR(dayT)+'</span>';
+      h+='<span class="cd-ar">&#9660;</span></div>';
+      h+='<div class="cd-body">';
+      for(var ii=0;ii<bd.items.length;ii++){
+        var it=bd.items[ii],pk=di+'_'+ii;
+        var cv=iCost(it.k,it.qa,it.qc);
+        var sv=iCost(it.k,it.qa,it.qc,'site');
+        var paid=!!(ST.paid&&ST.paid[pk]);
+        var det='';
+        if(it.k&&PRICING[it.k]){
+          var pp=PRICING[it.k][curGroup]||PRICING[it.k].site;
+          var pts=[];
+          if(it.qa>0&&pp[0]>0)pts.push(it.qa+'x R$'+pp[0].toFixed(2).replace('.',','));
+          if(it.qc>0&&pp[1]>0)pts.push(it.qc+'x R$'+pp[1].toFixed(2).replace('.',','));
+          else if(it.qc>0)pts.push('criancas gratis');
+          det=pts.join(' + ');
+        }
+        h+='<div class="cr"><div class="cr-ck'+(paid?' paid':'')+'" data-k="'+pk+'" onclick="togPaid(this)">'+(paid?'&#10003;':'')+'</div>';
+        h+='<div class="cr-i"><div class="cr-n">'+it.n+'</div>'+(det?'<div class="cr-d">'+det+'</div>':'')+'</div>';
+        h+='<div class="cr-p"><div class="cr-v">'+fmtR(cv)+'</div>';
+        if(sv-cv>0.01&&curGroup!=='site')h+='<div class="cr-ec">-'+fmtR(sv-cv)+'</div>';
+        h+='</div></div>';
+      }
+      /* Extras */
+      if(ST.extras[di]){
+        for(var ei=0;ei<ST.extras[di].length;ei++){
+          h+='<div class="cr"><div class="cr-ck paid">&#10003;</div>';
+          h+='<div class="cr-i"><div class="cr-n">Extra</div></div>';
+          h+='<div class="cr-p"><div class="cr-v">'+fmtR(ST.extras[di][ei])+'</div></div></div>';
+        }
+      }
+      /* Add extra */
+      h+='<div class="extra-r">';
+      h+='<input class="extra-i" id="ex_'+di+'" type="number" min="0" step="0.01" placeholder="+ Adicionar gasto (R$)">';
+      h+='<button class="extra-b" data-di="'+di+'" onclick="addExtra(this)">+</button></div>';
+      h+='<div class="cd-sub"><span>Subtotal</span><span>'+fmtR(dayT)+'</span></div>';
+      h+='</div></div>';
+    }
+    /* Comparativo */
+    h+='<div class="cmp-card"><div class="cmp-t">Comparativo entre grupos</div>';
+    var GKS=['prime','tche','lac','site'];
+    var GNS=['Preco Prime','Tche Ofertas','Lacador','Direto no Site'];
+    for(var gi=0;gi<4;gi++){
+      var gt=0;
+      for(var di=0;di<BUDGET_DAYS.length;di++){
+        var bd=BUDGET_DAYS[di];
+        for(var ii=0;ii<bd.items.length;ii++){
+          gt+=iCost(bd.items[ii].k,bd.items[ii].qa,bd.items[ii].qc,GKS[gi]);
+        }
+      }
+      var ecd=totSite-gt;
+      h+='<div class="cmp-r"><span class="cmp-l">'+(curGroup===GKS[gi]?'&#10004; ':'')+GNS[gi]+'</span>';
+      h+='<span class="cmp-v">'+fmtR(gt)+'</span>';
+      if(ecd>0.01&&gi<3)h+='<span class="cmp-e">-'+fmtR(ecd)+'</span>';
+      h+='</div>';
+    }
+    h+='</div>';
+    h+='<div class="ct-note">Nao incluidos: hospedagem, transporte e refeicoes avulsas.</div>';
+    document.getElementById('custos-ps').innerHTML=h;
+  }catch(e){console.log('renderCustos',e);}
+}
+
+/* ── REELS ─────────────────────────────────────────────────────────────── */
+function renderReels(){
+  try{
+    var all=[];
+    for(var di=0;di<DAYS.length;di++){
+      var d=DAYS[di];
+      for(var si=0;si<d.stops.length;si++){
+        if(d.stops[si].lat&&d.stops[si].lng)
+          all.push({d:d.id,i:si,st:d.stops[si],date:d.date});
+      }
+    }
+    var h='<div class="ig-hd"><div class="ig-ht">Instagram Reels e Stories</div>';
+    h+='<div class="ig-hs">Cards 9:16 prontos para postar!</div>';
+    h+='<div class="ig-bd"><span class="ig-b">'+all.length+' locais</span>';
+    h+='<span class="ig-b">Hashtags prontas</span></div></div>';
+    h+='<div class="ig-grid">';
+    for(var i=0;i<all.length;i++){
+      var it=all[i],vk=it.d+'_'+it.i;
+      var vis=VISUALS[vk]||{g:'linear-gradient(135deg,#1B2A4A,#243860)',e:'pin'};
+      var hp=!!ST.photos[vk];
+      h+='<div class="igc" data-d="'+it.d+'" data-i="'+it.i+'" onclick="openIG(this.dataset.d|0,this.dataset.i|0)">';
+      h+='<div class="igc-t" style="background:'+vis.g+';">';
+      if(hp)h+='<img class="igc-ph" src="'+ST.photos[vk]+'" alt="">';
+      h+='<div class="igc-ov"></div>';
+      h+='<span class="igc-e">'+getE(vis.e)+'</span>';
+      h+='<span class="igc-d">Dia '+it.d+'</span>';
+      h+='</div><div class="igc-b">';
+      h+='<div class="igc-n">'+it.st.name+'</div>';
+      h+='<div class="igc-s">'+it.date+' | '+(it.st.city||'Serra Gaucha')+'</div>';
+      h+='<button class="igc-btn">Criar Reel</button>';
+      h+='</div></div>';
+    }
+    h+='</div>';
+    document.getElementById('reels-ps').innerHTML=h;
+  }catch(e){console.log('renderReels',e);}
+}
+
+/* ── IG CANVAS ─────────────────────────────────────────────────────────── */
+function getGC(g){var m=g.match(/#[0-9A-Fa-f]{6}/g);return m&&m.length>=2?[m[0],m[m.length-1]]:['#1B2A4A','#243860'];}
+function getIGI(n){var ks=Object.keys(IGDATA);for(var i=0;i<ks.length;i++){if(n.indexOf(ks[i])>=0)return IGDATA[ks[i]];}return IGDEF;}
+function wtxt(ctx,txt,x,y,mw,lh){
+  var words=(txt||'').split(' '),line='',cY=y;
+  for(var i=0;i<words.length;i++){
+    var t2=line+words[i]+' ';
+    if(ctx.measureText(t2).width>mw&&i>0){ctx.fillText(line.trim(),x,cY);line=words[i]+' ';cY+=lh;}
+    else line=t2;
+  }
+  ctx.fillText(line.trim(),x,cY);
+}
+function drawIG(stop,vis,uph){
+  try{
+    var c=document.getElementById('igCanvas'),ctx=c.getContext('2d');
+    var W=c.width,H=c.height;
+    ctx.clearRect(0,0,W,H);
+    var cols=getGC(vis.g);
+    function dC(){
+      var fd=ctx.createLinearGradient(0,H*0.42,0,H);
+      fd.addColorStop(0,'rgba(0,0,0,0)');fd.addColorStop(0.45,'rgba(0,0,0,0.55)');fd.addColorStop(1,'rgba(0,0,0,0.9)');
+      ctx.fillStyle=fd;ctx.fillRect(0,0,W,H);
+      ctx.fillStyle='rgba(0,0,0,0.5)';ctx.beginPath();ctx.roundRect(18,16,108,32,16);ctx.fill();
+      ctx.fillStyle='rgba(255,255,255,0.9)';ctx.font='bold 13px Arial';ctx.textAlign='left';ctx.textBaseline='middle';
+      ctx.fillText('DIA '+stop.dayId+' | '+stop.date,28,32);
+      var ig=ctx.createLinearGradient(W-70,16,W-18,48);
+      ig.addColorStop(0,'#F58529');ig.addColorStop(0.5,'#DD2A7B');ig.addColorStop(1,'#8134AF');
+      ctx.fillStyle=ig;ctx.beginPath();ctx.roundRect(W-70,16,52,32,16);ctx.fill();
+      ctx.fillStyle='white';ctx.font='bold 12px Arial';ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText('IG',W-44,32);
+      ctx.font=Math.round(W*0.26)+'px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+      try{ctx.fillText(getE(vis.e),W/2,H*0.37);}catch(ex){}
+      ctx.fillStyle='white';ctx.font='bold '+Math.round(W*0.066)+'px Arial';ctx.textAlign='center';ctx.textBaseline='top';
+      wtxt(ctx,stop.name,W/2,H*0.61,W*0.85,Math.round(W*0.078));
+      ctx.fillStyle='rgba(201,162,39,0.95)';ctx.font=Math.round(W*0.044)+'px Arial';
+      ctx.fillText(stop.city||'Serra Gaucha, RS',W/2,H*0.73);
+      ctx.strokeStyle='rgba(201,162,39,0.5)';ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(W*0.25,H*0.785);ctx.lineTo(W*0.75,H*0.785);ctx.stroke();
+      ctx.fillStyle='rgba(255,255,255,0.55)';ctx.font=Math.round(W*0.036)+'px Arial';
+      ctx.fillText('Julho 2026 | Serra Gaucha | Brasil',W/2,H*0.81);
+      var igd=getIGI(stop.name);
+      ctx.fillStyle='rgba(255,255,255,0.3)';ctx.font=Math.round(W*0.027)+'px Arial';
+      ctx.fillText((igd.tags||'').slice(0,52)+'...',W/2,H*0.86);
+      ctx.fillStyle='rgba(255,255,255,0.2)';ctx.font='bold '+Math.round(W*0.032)+'px Arial';
+      ctx.fillText('@gramado2026',W/2,H*0.935);
+    }
+    if(uph&&igUsePh){
+      var img=new Image();
+      img.onload=function(){var sc=Math.max(W/img.width,H/img.height);ctx.drawImage(img,(W-img.width*sc)/2,(H-img.height*sc)/2,img.width*sc,img.height*sc);dC();};
+      img.onerror=function(){var gr=ctx.createLinearGradient(0,0,W,H);gr.addColorStop(0,cols[0]);gr.addColorStop(1,cols[1]);ctx.fillStyle=gr;ctx.fillRect(0,0,W,H);dC();};
+      img.src=uph;
+    }else{
+      var gr=ctx.createLinearGradient(0,0,W,H);gr.addColorStop(0,cols[0]);gr.addColorStop(1,cols[1]);
+      ctx.fillStyle=gr;ctx.fillRect(0,0,W,H);
+      ctx.fillStyle='rgba(255,255,255,0.055)';
+      ctx.beginPath();ctx.arc(W*0.82,H*0.14,W*0.55,0,Math.PI*2);ctx.fill();
+      ctx.beginPath();ctx.arc(W*0.1,H*0.72,W*0.42,0,Math.PI*2);ctx.fill();
+      dC();
+    }
+  }catch(e){console.log('drawIG',e);}
+}
+function sIGT(t){
+  document.querySelectorAll('.igt').forEach(function(b){b.classList.remove('on');});
+  document.querySelectorAll('.igp').forEach(function(p){p.classList.remove('on');});
+  document.getElementById('igp-'+t).classList.add('on');
+  ['card','leg','tags'].forEach(function(k,i){if(k===t)document.querySelectorAll('.igt')[i].classList.add('on');});
+}
+function openIG(dayId,si){
+  try{
+    var d=null;for(var i=0;i<DAYS.length;i++){if(DAYS[i].id===dayId){d=DAYS[i];break;}}
+    if(!d||!d.stops[si])return;
+    var st=d.stops[si],vk=dayId+'_'+si;
+    var vis=VISUALS[vk]||{g:'linear-gradient(135deg,#1B2A4A,#243860)',e:'pin'};
+    igStop={name:st.name,city:st.city||'Serra Gaucha, RS',dayId:dayId,si:si,vk:vk,vis:vis,date:d.date};
+    igUsePh=false;
+    var chk=document.getElementById('igTog');if(chk){chk.classList.remove('on');chk.textContent='';}
+    var tt=document.getElementById('igmT');if(tt)tt.textContent='Reel — '+st.name;
+    var igd=getIGI(st.name);
+    var cap=document.getElementById('igCap');if(cap)cap.textContent=igd.cap||IGDEF.cap;
+    var tg=document.getElementById('igTags');if(tg)tg.textContent=igd.tags||IGDEF.tags;
+    document.getElementById('igm').classList.add('open');
+    sIGT('card');
+    drawIG(igStop,vis,ST.photos[vk]||null);
+  }catch(e){console.log('openIG',e);}
+}
+function togIGPh(){
+  if(!igStop)return;
+  var ph=ST.photos[igStop.vk];
+  if(!ph&&!igUsePh){toast('Tire uma foto neste local primeiro!');return;}
+  igUsePh=!igUsePh;
+  var chk=document.getElementById('igTog');
+  if(chk){chk.classList.toggle('on',igUsePh);chk.textContent=igUsePh?'\u2713':'';}
+  drawIG(igStop,igStop.vis,ph||null);
+}
+function copyCap(){
+  var igd=getIGI((igStop||{}).name||'');
+  copyT((igd.cap||IGDEF.cap)+String.fromCharCode(10,10)+(igd.tags||IGDEF.tags));
+}
+function copyTags(){
+  var igd=getIGI((igStop||{}).name||'');
+  copyT(igd.tags||IGDEF.tags);
+}
+function shareIG(){
+  var c=document.getElementById('igCanvas');
+  var igd=getIGI((igStop||{}).name||'');
+  var cap=(igd.cap||IGDEF.cap)+String.fromCharCode(10,10)+(igd.tags||IGDEF.tags);
+  c.toBlob(function(blob){
+    var f=new File([blob],'gramado2026.jpg',{type:'image/jpeg'});
+    if(navigator.canShare&&navigator.canShare({files:[f]})){
+      navigator.share({files:[f],title:'Gramado 2026',text:cap}).catch(function(){dlCard();});
+    }else dlCard();
+  },'image/jpeg',0.92);
+}
+function dlCard(){
+  var a=document.createElement('a');
+  a.href=document.getElementById('igCanvas').toDataURL('image/jpeg',0.92);
+  a.download='gramado2026_reel.jpg';a.click();
+  toast('Imagem salva!');
+}
+function closeIG(){document.getElementById('igm').classList.remove('open');igStop=null;}
+
+/* ── FOTOS ─────────────────────────────────────────────────────────────── */
+function renderFotos(){
+  try{
+    var all=[];
+    for(var di=0;di<DAYS.length;di++){var d=DAYS[di];for(var si=0;si<d.stops.length;si++)all.push({d:d.id,i:si,st:d.stops[si],date:d.date});}
+    var cnt=Object.keys(ST.photos).length;
+    var h='<div class="ft-hd"><b>Galeria de Fotos</b> — '+cnt+' foto'+(cnt!==1?'s':'')+' salva'+(cnt!==1?'s':'')+'</div>';
+    h+='<div class="gal-grid">';
+    for(var i=0;i<all.length;i++){
+      var it=all[i],vk=it.d+'_'+it.i;
+      var vis=VISUALS[vk]||{g:'linear-gradient(135deg,#1B2A4A,#243860)',e:'pin'};
+      var hp=!!ST.photos[vk];
+      h+='<div class="gc" data-d="'+it.d+'" data-i="'+it.i+'" onclick="hp_click(this.dataset.d|0,this.dataset.i|0,'+(hp?'true':'false')+')">';
+      h+='<div class="gc-t" style="background:'+vis.g+';">';
+      if(hp)h+='<img class="gc-i" src="'+ST.photos[vk]+'" alt="">';
+      h+='<span class="gc-e">'+getE(vis.e)+'</span>';
+      h+='<span class="gc-b">'+(hp?'Foto':'+ Foto')+'</span>';
+      h+='</div><div class="gc-bd">';
+      h+='<div class="gc-n">'+it.st.name+'</div>';
+      h+='<div class="gc-s">Dia '+it.d+' | '+it.date+'</div>';
+      h+='</div></div>';
+    }
+    h+='</div>';
+    document.getElementById('fotos-ps').innerHTML=h;
+  }catch(e){console.log('renderFotos',e);}
+}
+function hp_click(d,i,has){if(has)openPV(d,i);else trigUp(d,i);}
+
+/* ── MALAS ─────────────────────────────────────────────────────────────── */
+function renderMalas(){
+  try{
+    var tot=0;for(var i=0;i<PACKING.length;i++)tot+=PACKING[i].items.length;
+    var done=(ST.pack||[]).length,pct=tot>0?Math.round(done/tot*100):0;
+    var h='<div class="mp"><div class="mp-n">'+done+'/'+tot+'</div>';
+    h+='<div class="mp-l">'+pct+'% completo</div>';
+    h+='<div class="mp-bar"><div class="mp-f" style="width:'+pct+'%"></div></div></div>';
+    for(var si=0;si<PACKING.length;si++){
+      var sec=PACKING[si];
+      h+='<div class="msec"><div class="msec-t">'+sec.sec+'</div>';
+      for(var ii=0;ii<sec.items.length;ii++){
+        var k=si+'_'+ii,ck=(ST.pack||[]).indexOf(k)>=0;
+        h+='<div class="mi'+(ck?' ck':'')+'" data-k="'+k+'" onclick="togPack(this.dataset.k)">';
+        h+='<div class="mi-c">'+(ck?'&#10003;':'')+'</div>';
+        h+='<div class="mi-l">'+sec.items[ii]+'</div></div>';
+      }
+      h+='</div>';
+    }
+    document.getElementById('malas-ps').innerHTML=h;
+  }catch(e){console.log('renderMalas',e);}
+}
+function togPack(k){
+  if(!ST.pack)ST.pack=[];
+  var i=ST.pack.indexOf(k);
+  if(i<0)ST.pack.push(k);else ST.pack.splice(i,1);
+  save();renderMalas();
+}
+
+/* ── FOTOS UPLOAD ──────────────────────────────────────────────────────── */
+var _uk=null;
+function trigUp(d,i){_uk=d+'_'+i;document.getElementById('phInput').click();}
+document.getElementById('phInput').addEventListener('change',function(e){
+  var f=e.target.files[0];if(!f||!_uk)return;
+  this.value='';toast('Processando...');var key=_uk;_uk=null;
+  try{
+    var r=new FileReader();
+    r.onload=function(ev){
+      try{
+        var img=new Image();
+        img.onload=function(){
+          try{
+            var sc=Math.min(1,900/img.width);
+            var c=document.createElement('canvas');
+            c.width=Math.round(img.width*sc);c.height=Math.round(img.height*sc);
+            c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+            ST.photos[key]=c.toDataURL('image/jpeg',0.72);
+            save();updBadge();toast('Foto salva!');
+            if(curTab==='dias')renderDias();
+            else if(curTab==='fotos')renderFotos();
+            else if(curTab==='reels')renderReels();
+          }catch(err){toast('Erro ao processar');}
+        };
+        img.onerror=function(){toast('Erro na foto');};
+        img.src=ev.target.result;
+      }catch(err){toast('Erro ao ler');}
+    };
+    r.onerror=function(){toast('Erro no arquivo');};
+    r.readAsDataURL(f);
+  }catch(err){toast('Erro');}
+});
+function updBadge(){
+  var n=Object.keys(ST.photos).length,b=document.getElementById('pbadge');
+  if(b){if(n>0){b.textContent=n;b.style.display='block';}else b.style.display='none';}
+}
+function openPV(d,i){
+  var k=d+'_'+i;
+  if(!ST.photos[k]){trigUp(d,i);return;}
+  pvKey={d:d,i:i,k:k};
+  document.getElementById('pvImg').src=ST.photos[k];
+  document.getElementById('pv').classList.add('open');
+}
+function closePV(){document.getElementById('pv').classList.remove('open');pvKey=null;}
+function delPh(){
+  if(!pvKey)return;
+  delete ST.photos[pvKey.k];save();closePV();updBadge();
+  if(curTab==='dias')renderDias();else renderFotos();
+  toast('Foto removida');
+}
+
+/* ── SWIPE ─────────────────────────────────────────────────────────────── */
+var _sx=0,_sy=0,_sw=false;
+document.addEventListener('touchstart',function(e){if(curTab!=='dias')return;_sx=e.touches[0].clientX;_sy=e.touches[0].clientY;_sw=true;},{passive:true});
+document.addEventListener('touchend',function(e){
+  if(!_sw||curTab!=='dias')return;_sw=false;
+  var dx=e.changedTouches[0].clientX-_sx,dy=e.changedTouches[0].clientY-_sy;
+  if(Math.abs(dx)>70&&Math.abs(dy)<50){if(dx<0&&curDay<7)sDay(curDay+1);else if(dx>0&&curDay>1)sDay(curDay-1);}
+},{passive:true});
+
+/* ── PWA ────────────────────────────────────────────────────────────────── */
+function setupPWA(){
+  try{
+    var c=document.createElement('canvas');c.width=c.height=192;
+    var ctx=c.getContext('2d');
+    var gr=ctx.createLinearGradient(0,0,192,192);
+    gr.addColorStop(0,'#1B2A4A');gr.addColorStop(1,'#2D4A7A');
+    ctx.fillStyle=gr;
+    ctx.beginPath();ctx.roundRect(0,0,192,192,34);ctx.fill();
+    ctx.fillStyle='#C9A227';ctx.font='bold 80px Arial';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('G',96,78);
+    ctx.fillStyle='white';ctx.font='bold 32px Arial';
+    ctx.fillText('2026',96,132);
+    var icon=c.toDataURL('image/png');
+    var li=document.createElement('link');li.rel='apple-touch-icon';li.href=icon;document.head.appendChild(li);
+    var ml=document.createElement('link');ml.rel='manifest';
+    ml.href='data:application/manifest+json,'+encodeURIComponent(JSON.stringify({
+      name:'Gramado 2026',short_name:'Gramado26',display:'standalone',
+      background_color:'#1B2A4A',theme_color:'#1B2A4A',orientation:'portrait',
+      icons:[{src:icon,sizes:'192x192',type:'image/png'}]
+    }));
+    document.head.appendChild(ml);
+  }catch(e){}
+}
+
+/* ── INIT ────────────────────────────────────────────────────────────────── */
+function autoToday(){
+  try{var now=new Date();for(var i=0;i<DAYS.length;i++){var d=DAYS[i],p=d.date.split('/');
+    var s=new Date(2026,parseInt(p[1],10)-1,parseInt(p[0],10));
+    var en=new Date(2026,parseInt(p[1],10)-1,parseInt(p[0],10),23,59,59);
+    if(now>=s&&now<=en){curDay=d.id;break;}
+  }}catch(e){}
+}
+try{autoToday();}catch(e){}
+try{setupPWA();}catch(e){}
+try{updateCD();setInterval(updateCD,60000);}catch(e){}
+try{renderDayTabs();}catch(e){console.log('DT',e);}
+try{renderDias();}catch(e){console.log('D',e);}
+try{updBadge();}catch(e){}</script>
+</body>
+</html>
